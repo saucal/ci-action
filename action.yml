@@ -2,11 +2,11 @@ name: 'Run the SAU/CAL CI Bot'
 description: ''
 inputs:
   repository_owner: 
-    description: 'The repository owner. Usually ${{ github.repository_owner }}'
+    description: 'The repository owner. Usually github.repository_owner'
     required: true
     default: ''
   repository_name: 
-    description: 'The repository name. Usually ${{ github.event.repository.name }}'
+    description: 'The repository name. Usually github.event.repository.name'
     required: true
     default: ''
   bot_token:  
@@ -14,7 +14,7 @@ inputs:
     required: true
     default: ''
   pr_head_sha:  
-    description: 'The commit SHA to run the action on. Usually ${{ github.event.pull_request.head.sha }}'
+    description: 'The commit SHA to run the action on. Usually github.event.pull_request.head.sha'
     required: true
     default: ''
 outputs:
