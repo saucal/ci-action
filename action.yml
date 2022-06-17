@@ -10,7 +10,7 @@ inputs:
     required: true
     default: ''
   bot_token:  
-    description: 'The Bots token. Usually ${{ secrets.CI_BOT_TOKEN }}'
+    description: 'The Bots token. Usually configured in the repo settings'
     required: true
     default: ''
   pr_head_sha:  
