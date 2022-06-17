@@ -1,0 +1,38 @@
+name: 'Run the SAU/CAL CI Bot'
+description: ''
+inputs:
+  repository_owner: 
+    description: 'The repository owner. Usually ${{ github.repository_owner }}'
+    required: true
+    default: ''
+  repository_name: 
+    description: 'The repository name. Usually ${{ github.event.repository.name }}'
+    required: true
+    default: ''
+  bot_token:  
+    description: 'The Bots token. Usually ${{ secrets.CI_BOT_TOKEN }}'
+    required: true
+    default: ''
+  pr_head_sha:  
+    description: 'The commit SHA to run the action on. Usually ${{ github.event.pull_request.head.sha }}'
+    required: true
+    default: ''
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+runs:
+  using: "composite"
+  steps:
+    - id: random-number-generator
+      run: echo "::set-output name=random-number::$(echo $RANDOM)"
+      shell: bash
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash          
+    - run: ci-bot.sh
+      shell: bash
+      env:
+        REPO_ORG: ${{ inputs.repository_owner }}
+        REPO_NAME: ${{ inputs.repository_name }}
+        REPO_TOKEN: ${{ inputs.bot_token }}
+        PR_HEAD_SHA: ${{ inputs.pr_head_sha }}
