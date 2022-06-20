@@ -54,6 +54,5 @@ php ~/vip-go-ci-tools/vip-go-ci/vip-go-ci.php \
 --autoapprove-label="auto-approved" \
 --informational-msg="This bot provides automated PHP linting and PHPCS scanning." \
 --phpcs-standard="WordPress-VIP-Go,PHPCompatibilityWP" \
---phpcs-sniffs-exclude="WordPress.Files.FileName" \
 --repo-options=true \
 --repo-options-allowed="skip-execution,skip-draft-prs,lint-modified-files-only,phpcs,phpcs-severity,phpcs-sniffs-include,phpcs-sniffs-exclude,report-no-issues-found,review-comments-sort,review-comments-include-severity,post-generic-pr-support-comments,review-comments-sort,scan-details-msg-include,svg-checks,autoapprove,autoapprove-php-nonfunctional-changes,hashes-api"
