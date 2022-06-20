@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #
 # Deploy your branch on VIP Go.
-# 
+#
 
 set -ex # Change to `set -ex` to debug commands.
 
@@ -19,17 +19,39 @@ else
 	rm -f tools-init.sh
 fi
 
-
 #
 # Make sure to disable PHPCS-scanning by default
 #
-
-# PHPCS_ENABLED=${PHPCS_ENABLED:-false}
-PHPCS_ENABLED=true
-LINTING_ENABLED=false # TODO: 
+PHPCS_ENABLED=${PHPCS_ENABLED:-false}
+LINTING_ENABLED=${LINTING_ENABLED:-false}
 
 #
 # Actually run vip-go-ci
 #
-
-php ~/vip-go-ci-tools/vip-go-ci/vip-go-ci.php --repo-owner="$REPO_ORG" --repo-name="$REPO_NAME" --commit="$PR_HEAD_SHA"  --token="$REPO_TOKEN" --local-git-repo="$GITHUB_WORKSPACE" --phpcs="$PHPCS_ENABLED" --lint="$LINTING_ENABLED"  --phpcs-path="$HOME/vip-go-ci-tools/phpcs/bin/phpcs" --hashes-api=false --hashes-api-url="https://dummyapi.saucal.com" --hashes-oauth-token="aaa" --hashes-oauth-token-secret="aaa" --hashes-oauth-consumer-key="aaa" --hashes-oauth-consumer-secret="aaa" --autoapprove=true --autoapprove-label="hey" --autoapprove-filetypes="json" --informational-msg="this is the informational-msg" --phpcs-sniffs-exclude="WordPress.Files.FileName"
+php ~/vip-go-ci-tools/vip-go-ci/vip-go-ci.php \
+--repo-owner="$REPO_ORG" \
+--repo-name="$REPO_NAME" \
+--commit="$PR_HEAD_SHA"  \
+--token="$REPO_TOKEN" \
+--local-git-repo="$GITHUB_WORKSPACE" \
+--phpcs="$PHPCS_ENABLED" \
+--lint="$LINTING_ENABLED" \
+--lint-modified-files-only \
+--svg-checks=true \
+--svg-scanner-path="$HOME/vip-go-ci-tools/vip-go-svg-sanitizer/svg-scanner.php" \
+--phpcs-path="$HOME/vip-go-ci-tools/phpcs/bin/phpcs" \
+--hashes-api=false \
+--hashes-api-url="https://dummyapi.saucal.com" \
+--hashes-oauth-token="aaa" \
+--hashes-oauth-token-secret="aaa" \
+--hashes-oauth-consumer-key="aaa" \
+--hashes-oauth-consumer-secret="aaa" \
+--autoapprove=true \
+--autoapprove-filetypes="css,csv,eot,gif,gz,ico,ini,jpeg,jpg,json,less,map,md,mdown,mo,mp4,otf,pcss,pdf,po,pot,png,sass,scss,styl,ttf,txt,woff,woff2,yml" \
+--autoapprove-php-nonfunctional-changes=true \
+--autoapprove-label="auto-approved" \
+--informational-msg="This bot provides automated PHP linting and PHPCS scanning."
+--phpcs-standard="WordPress-VIP-Go,PHPCompatibilityWP" \
+--phpcs-sniffs-exclude="WordPress.Files.FileName" \
+--repo-options=true \
+--repo-options-allowed="skip-execution,skip-draft-prs,lint-modified-files-only,phpcs,phpcs-severity,phpcs-sniffs-include,phpcs-sniffs-exclude,report-no-issues-found,review-comments-sort,review-comments-include-severity,post-generic-pr-support-comments,review-comments-sort,scan-details-msg-include,svg-checks,autoapprove,autoapprove-php-nonfunctional-changes,hashes-api" \
