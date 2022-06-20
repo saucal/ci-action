@@ -1,22 +1,29 @@
 name: 'Run the SAU/CAL CI Bot'
 description: ''
 inputs:
-  repository_owner: 
+  repository_owner:
     description: 'The repository owner. Usually github.repository_owner'
     required: true
     default: ''
-  repository_name: 
+  repository_name:
     description: 'The repository name. Usually github.event.repository.name'
     required: true
     default: ''
-  bot_token:  
+  bot_token:
     description: 'The Bots token. Usually configured in the repo settings'
     required: true
     default: ''
-  pr_head_sha:  
+  pr_head_sha:
     description: 'The commit SHA to run the action on. Usually github.event.pull_request.head.sha'
     required: true
     default: ''
+  phpcs_enabled:
+    description: 'Whether to enable PHPCS or not'
+    required: false
+    default: 'true'
+  linting_enabled:
+    description: 'Whether to enable Linting or not'
+    required: false
 outputs:
   random-number:
     description: "Random number"
@@ -28,7 +35,7 @@ runs:
       run: echo "::set-output name=random-number::$(echo $RANDOM)"
       shell: bash
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash          
+      shell: bash
     - run: ci-bot.sh
       shell: bash
       env:
@@ -36,3 +43,5 @@ runs:
         REPO_NAME: ${{ inputs.repository_name }}
         REPO_TOKEN: ${{ inputs.bot_token }}
         PR_HEAD_SHA: ${{ inputs.pr_head_sha }}
+        PHPCS_ENABLED: ${{ inputs.phpcs_enabled }}
+        LINTING_ENABLED: ${{ inputs.linting_enabled }}
