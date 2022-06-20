@@ -36,7 +36,7 @@ php ~/vip-go-ci-tools/vip-go-ci/vip-go-ci.php \
 --local-git-repo="$GITHUB_WORKSPACE" \
 --phpcs="$PHPCS_ENABLED" \
 --lint="$LINTING_ENABLED" \
---lint-modified-files-only \
+--lint-modified-files-only=true \
 --svg-checks=true \
 --svg-scanner-path="$HOME/vip-go-ci-tools/vip-go-svg-sanitizer/svg-scanner.php" \
 --phpcs-path="$HOME/vip-go-ci-tools/phpcs/bin/phpcs" \
