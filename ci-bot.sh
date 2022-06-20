@@ -52,8 +52,8 @@ php ~/vip-go-ci-tools/vip-go-ci/vip-go-ci.php \
 --autoapprove-filetypes="css,csv,eot,gif,gz,ico,ini,jpeg,jpg,json,less,map,md,mdown,mo,mp4,otf,pcss,pdf,po,pot,png,sass,scss,styl,ttf,txt,woff,woff2,yml" \
 --autoapprove-php-nonfunctional-changes=true \
 --autoapprove-label="auto-approved" \
---informational-msg="This bot provides automated PHP linting and PHPCS scanning."
+--informational-msg="This bot provides automated PHP linting and PHPCS scanning." \
 --phpcs-standard="WordPress-VIP-Go,PHPCompatibilityWP" \
 --phpcs-sniffs-exclude="WordPress.Files.FileName" \
 --repo-options=true \
---repo-options-allowed="skip-execution,skip-draft-prs,lint-modified-files-only,phpcs,phpcs-severity,phpcs-sniffs-include,phpcs-sniffs-exclude,report-no-issues-found,review-comments-sort,review-comments-include-severity,post-generic-pr-support-comments,review-comments-sort,scan-details-msg-include,svg-checks,autoapprove,autoapprove-php-nonfunctional-changes,hashes-api" \
+--repo-options-allowed="skip-execution,skip-draft-prs,lint-modified-files-only,phpcs,phpcs-severity,phpcs-sniffs-include,phpcs-sniffs-exclude,report-no-issues-found,review-comments-sort,review-comments-include-severity,post-generic-pr-support-comments,review-comments-sort,scan-details-msg-include,svg-checks,autoapprove,autoapprove-php-nonfunctional-changes,hashes-api"
