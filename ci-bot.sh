@@ -37,6 +37,8 @@ php ~/vip-go-ci-tools/vip-go-ci/vip-go-ci.php \
 --phpcs="$PHPCS_ENABLED" \
 --lint="$LINTING_ENABLED" \
 --lint-modified-files-only=true \
+--lint-php-version-paths=7.4:/usr/bin/php7.4,8.1:/usr/bin/php8.1
+--lint-php-versions=7.4,8.1
 --svg-checks=true \
 --svg-scanner-path="$HOME/vip-go-ci-tools/vip-go-svg-sanitizer/svg-scanner.php" \
 --phpcs-path="$HOME/vip-go-ci-tools/phpcs/bin/phpcs" \
