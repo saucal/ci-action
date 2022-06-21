@@ -28,6 +28,14 @@ LINTING_ENABLED=${LINTING_ENABLED:-false}
 #
 # Actually run vip-go-ci
 #
+# TODO: remove
+#   --hashes-api-url
+#   --hashes-oauth-token
+#   --hashes-oauth-token-secret
+#   --hashes-oauth-consumer-key
+#   --hashes-oauth-consumer-secret
+# arguments
+#
 php ~/vip-go-ci-tools/vip-go-ci/vip-go-ci.php \
 --repo-owner="$REPO_ORG" \
 --repo-name="$REPO_NAME" \
