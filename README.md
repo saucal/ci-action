@@ -30,4 +30,6 @@ jobs:
           repository_name: ${{ github.event.repository.name }}
           bot_token: ${{ secrets.CI_BOT_TOKEN }}
           pr_head_sha: ${{ github.event.pull_request.head.sha }}
+          phpcs_enabled: true
+          linting_enabled: true
 ```
