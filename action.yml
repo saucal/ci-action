@@ -31,3 +31,4 @@ runs:
         REPO_TOKEN: ${{ inputs.bot_token }}
         PHPCS_ENABLED: ${{ inputs.phpcs_enabled }}
         LINTING_ENABLED: ${{ inputs.linting_enabled }}
+        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
