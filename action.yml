@@ -13,16 +13,9 @@ inputs:
     description: 'Whether to enable Linting or not'
     required: false
     default: 'true'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
 runs:
   using: "composite"
   steps:
-    - id: random-number-generator
-      run: echo "::set-output name=random-number::$(echo $RANDOM)"
-      shell: bash
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
     - run: ci-bot.sh
