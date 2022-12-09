@@ -27,6 +27,8 @@ LINTING_ENABLED=${LINTING_ENABLED:-false}
 REPO_ORG="${GITHUB_REPOSITORY_OWNER}"
 REPO_NAME="${GITHUB_REPOSITORY#"${REPO_ORG}/"}"
 
+php --version
+
 #
 # Actually run vip-go-ci
 #
