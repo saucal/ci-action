@@ -6,18 +6,16 @@
 set -ex # Change to `set -ex` to debug commands.
 
 #
-# If vip-go-ci-tools does not exist, get it in place.
-# by fetching and running tools-init. If it does exist,
-# run tools-init.sh anyway to check for updates.
+# Install vip-go-ci and its tools, pinned to one release.
 #
+VIP_GO_CI_VER="1.4.2"
+TOOLS_INIT="${RUNNER_TEMP:-/tmp}/tools-init.sh"
 
-if [ -d ~/vip-go-ci-tools ] ; then
-	bash ~/vip-go-ci-tools/vip-go-ci/tools-init.sh
-else
-	wget https://raw.githubusercontent.com/saucal/ci-bot/trunk/tools-init.sh -O tools-init.sh && \
-	bash tools-init.sh && \
-	rm -f tools-init.sh
-fi
+wget "https://raw.githubusercontent.com/Automattic/vip-go-ci/$VIP_GO_CI_VER/tools-init.sh" -O "$TOOLS_INIT"
+sed -i "s/^export VIP_GO_CI_VER=\"\"$/export VIP_GO_CI_VER=\"$VIP_GO_CI_VER\"/" "$TOOLS_INIT"
+grep -q "^export VIP_GO_CI_VER=\"$VIP_GO_CI_VER\"$" "$TOOLS_INIT"
+bash "$TOOLS_INIT"
+rm -f "$TOOLS_INIT"
 
 #
 # Make sure to disable PHPCS-scanning by default
@@ -66,5 +64,6 @@ php ~/vip-go-ci-tools/vip-go-ci/vip-go-ci.php \
 --autoapprove-label="auto-approved" \
 --informational-msg="This bot provides automated PHP linting and PHPCS scanning." \
 --phpcs-standard="WordPress-VIP-Go,PHPCompatibilityWP" \
+--phpcs-standards-to-ignore="PHPCSUtils" \
 --repo-options=true \
 --repo-options-allowed="skip-execution,skip-draft-prs,lint-modified-files-only,phpcs,phpcs-severity,phpcs-sniffs-include,phpcs-sniffs-exclude,report-no-issues-found,review-comments-sort,review-comments-include-severity,post-generic-pr-support-comments,review-comments-sort,scan-details-msg-include,svg-checks,autoapprove,autoapprove-php-nonfunctional-changes"
